@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+
+
+	<form action="role/addroleSubmit.action" method="post" style="padding-top: 30px;">
+		<table>
+			<tbody>
+				<tr>
+					<td></td>
+					<td><input th:placeholder="#{announceTitle}" value="" name="announceTitle" type="text"></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><textarea rows="" cols="50" th:placeholder="#{announceText}" name="announceText"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input th:value="#{chooseFile}" type="file" name="announceImageFile"/>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input class="am-btn am-btn-success" th:value="#{submit}" type="submit">
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	</body>
+</html>

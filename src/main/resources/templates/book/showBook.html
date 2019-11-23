@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Developed By Themifycloud">
+    <meta name="author" content="cosmic">
+    <meta name="keywords" content="Bootstrap 3, Template, Theme, Responsive, Corporate, Business">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>
+        Bibliosoft | Home
+    </title>
+    <link href="/index/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/index/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/index/css/parallax-slider/parallax-slider.css" />
+    <script type="text/javascript" src="/index/js/parallax-slider/modernizr.custom.28468.js">
+    </script>
+    <link rel="stylesheet" href="/yhf/css/admin.css">
+    <link rel="stylesheet" href="/yhf/css/amazeui.min.css">
+    <link rel="stylesheet" href="/yhf/css/app.css">
+    <script src="/yhf/myplugs/js/plugs.js"></script>
+    <link rel="stylesheet" href="/yhf/css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="/js/jquery-3.3.1.min.js"></script>
+
+    <link rel="shortcut icon" href="img/logo.ico"/>
+
+</head>
+
+<body>
+<!--header start-->
+<header class="head-section col-lg-12">
+    <div class="navbar navbar-default navbar-static-top container">
+        <div class="navbar-header">
+            <a class="navbar-brand"><img src="/logo.png" style="height: 60%; width:60%"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="btn" data-close-others="false" data-delay="0" data-hover=
+                            "dropdown" data-toggle="dropdown" th:text="#{language}">
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="?lang=en_US">English(US)</a>
+                        </li>
+                        <li>
+                            <a href="?lang=zh_CN">简体中文</a>
+                        </li>
+                    </ul>
+                </li>
+                <li><input id="keywords" class="form-control search" th:placeholder="#{pleaseInputKeywords}" type="text"></li>
+                <li>
+                    <a class="btn btn-info" onclick="searchBook()">
+                        <span  th:text="' ' + #{search}" class="glyphicon glyphicon-book"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="btn btn-info"  onclick="personal()">
+                        <span th:text="' '+ #{personalPage}" class="glyphicon glyphicon-log-in"></span>
+                    </a>
+
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+</header>
+<!--header end-->
+
+<!-- Sequence Modern Slider -->
+
+<div class="am-cf admin-main" style="padding-top: 0px; margin-left:-40px">
+    <!-- content start -->
+    <div class="admin-content" style="height: 480px;overflow-y:auto;">
+        <div class="admin-content-body" >
+
+            <div class="container" style="padding: 0px 10px 0px 10px">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <div style=" margin-top: 15px" >
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <button class="btnAdd" style="font-size: 16px; margin-top: -11px;margin-left: 10px; color: white;background: #333;border:1px solid #CCC;display:block;width:100px;height:33px;">
+                                                    <span th:text="#{bookList}"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-g" style="margin-top: 5px;">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th th:text="#{bookId}">
+                                    </th>
+
+                                    <th th:text="#{bookImage}"></th>
+                                    <th  th:text="#{bookDetail}"></th>
+                                    <th th:text="#{todo}"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="tUser">
+                                <tr th:each="book:${bookList}">
+                                    <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                    <td th:text="${book.id}">
+                                    </td>
+                                    <td><img th:src="@{${book.image}}" style="width: 99px;height: 132px"></td>
+
+                                    <td style="left: 30px">
+                                        <table style="width: 200px;height: 100%;">
+                                            <tr>
+                                                <th th:text="#{bookName}"></th>
+                                                <td  th:text="${book.title}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookAuthor}"></th>
+                                                <td  th:text="${book.author}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookIsbn}"></th>
+                                                <td  th:text="${book.isbn}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookPrice}"></th>
+                                                <td  th:text="${book.price}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookCategory}"></th>
+                                                <td th:text="${book.category}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookLocation}"></th>
+                                                <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <button th:text="#{clicktoReserve}" type="button" th:onclick="'javascript:reservedBook(\''+${book.id}+'\')'" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                    <span class="am-icon-pencil-square-o"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="padding: 0px 10px 0px 10px">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <div style=" margin-top: 15px" >
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <button class="btnAdd" style="font-size: 16px; margin-top: -11px;margin-left: 10px; color: white;background: #333;border:1px solid #CCC;display:block;width:130px;height:33px;">
+                                                    <span th:text="#{reservingBook}"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="am-g" style="margin-top: 5px;">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th th:text="#{bookId}">
+                                    </th>
+
+                                    <th th:text="#{bookImage}"></th>
+                                    <th  th:text="#{bookDetail}"></th>
+                                    <th  th:text="#{status}"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="tUser">
+                                <tr th:each="book:${reserveList}">
+                                    <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                    <td th:text="${book.id}">
+                                    </td>
+                                    <td><img th:src="@{${book.image}}" style="width: 99px;height: 132px"></td>
+
+                                    <td style="left: 30px">
+                                        <table style="width: 200px;height: 100%;">
+                                            <tr>
+                                                <th th:text="#{bookName}"></th>
+                                                <td  th:text="${book.title}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookAuthor}"></th>
+                                                <td  th:text="${book.author}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookIsbn}"></th>
+                                                <td  th:text="${book.isbn}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookPrice}"></th>
+                                                <td  th:text="${book.price}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookCategory}"></th>
+                                                <td th:text="${book.category}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookLocation}"></th>
+                                                <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <label th:text="#{reservingBook}" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                    <span class="am-icon-pencil-square-o"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="padding: 0px 10px 0px 10px">
+                <div class="am-g">
+                    <div class="am-u-sm-12 am-u-md-6">
+                        <div class="am-btn-toolbar">
+                            <div class="am-btn-group am-btn-group-xs">
+                                <div style=" margin-top: 15px" >
+                                    <table>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <button class="btnAdd" style="font-size: 16px; margin-top: -11px;margin-left: 10px; color: white;background: #333;border:1px solid #CCC;display:block;width:130px;height:33px;">
+                                                    <span th:text="#{borrowed}"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="am-g" style="margin-top: 5px;">
+                    <div class="am-u-sm-12">
+                        <form class="am-form">
+                            <table class="am-table am-table-striped am-table-hover table-main">
+                                <thead>
+                                <tr>
+                                    <th th:text="#{bookId}">
+                                    </th>
+
+                                    <th th:text="#{bookImage}"></th>
+                                    <th  th:text="#{bookDetail}"></th>
+                                    <th  th:text="#{status}"></th>
+                                </tr>
+                                </thead>
+                                <tbody id="tUser">
+                                <tr th:each="book:${showBorrowList}">
+                                    <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                    <td th:text="${book.id}">
+                                    </td>
+                                    <td><img th:src="@{${book.image}}" style="width: 99px;height: 132px"></td>
+
+                                    <td style="left: 30px">
+                                        <table style="width: 200px;height: 100%;">
+                                            <tr>
+                                                <th th:text="#{bookName}"></th>
+                                                <td  th:text="${book.title}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookAuthor}"></th>
+                                                <td  th:text="${book.author}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookIsbn}"></th>
+                                                <td  th:text="${book.isbn}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookPrice}"></th>
+                                                <td  th:text="${book.price}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookCategory}"></th>
+                                                <td th:text="${book.category}"></td>
+                                            </tr>
+                                            <tr>
+                                                <th th:text="#{bookLocation}"></th>
+                                                <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                    <td>
+                                        <div class="am-btn-toolbar">
+                                            <div class="am-btn-group am-btn-group-xs">
+                                                <label th:text="#{borrowed}" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                    <span class="am-icon-pencil-square-o"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- content end -->
+    </div>
+</div>
+<div style="display:none">
+    <div class="am-cf admin-main" style="padding-top: 0px;">
+        <!-- content start -->
+        <div class="admin-content" style="width: 1907px;height: 815px;overflow-x: hidden;overflow-y: scroll;">
+            <div class="admin-content-body">
+
+                <div class="container" style="padding: 0px 10px 0px 10px">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <!--<input type="text" id="" class="am-form-field" th:placeholder="#{pleaseInputISBN}">-->
+                                    <label th:text="#{bookList}" class="am-btn am-btn-default btnAdd">
+                                        <span class="icon-plus"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="margin-top: 5px;">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="#{bookId}">
+                                        </th>
+
+                                        <th th:text="#{bookImage}"></th>
+                                        <th  th:text="#{bookDetail}"></th>
+                                        <th  th:text="#{status}"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tUser">
+                                    <tr th:each="book:${bookList}">
+                                        <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                        <td th:text="${book.id}">
+                                        </td>
+                                        <td><img th:src="@{${book.image}}" style="width: 150px;height: 200px"></td>
+
+                                        <td style="left: 30px">
+                                            <table style="width: 200px;height: 100%;">
+                                                <tr>
+                                                    <th th:text="#{bookName}"></th>
+                                                    <td  th:text="${book.title}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookAuthor}"></th>
+                                                    <td  th:text="${book.author}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookIsbn}"></th>
+                                                    <td  th:text="${book.isbn}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookPrice}"></th>
+                                                    <td  th:text="${book.price}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookCategory}"></th>
+                                                    <td th:text="${book.category}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookLocation}"></th>
+                                                    <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <button th:text="#{clicktoReserve}" type="button" id="role_701" th:onclick="'javascript:reservedBook(\''+${book.id}+'\')'" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                        <span class="am-icon-pencil-square-o"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="padding: 0px 10px 0px 10px">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <!--<input type="text" id="" class="am-form-field" th:placeholder="#{pleaseInputISBN}">-->
+                                    <label th:text="#{reservingBook}" class="am-btn am-btn-default btnAdd">
+                                        <span class="icon-plus"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="margin-top: 5px;">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="#{bookId}">
+                                        </th>
+
+                                        <th th:text="#{bookImage}"></th>
+                                        <th  th:text="#{bookDetail}"></th>
+                                        <th  th:text="#{status}"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tUser">
+                                    <tr th:each="book:${reserveList}">
+                                        <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                        <td th:text="${book.id}">
+                                        </td>
+                                        <td><img th:src="@{${book.image}}" style="width: 99px;height: 132px"></td>
+
+                                        <td style="left: 30px">
+                                            <table style="width: 200px;height: 100%;">
+                                                <tr>
+                                                    <th th:text="#{bookName}"></th>
+                                                    <td  th:text="${book.title}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookAuthor}"></th>
+                                                    <td  th:text="${book.author}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookIsbn}"></th>
+                                                    <td  th:text="${book.isbn}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookPrice}"></th>
+                                                    <td  th:text="${book.price}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookCategory}"></th>
+                                                    <td th:text="${book.category}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookLocation}"></th>
+                                                    <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <label th:text="#{reservingBook}" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                        <span class="am-icon-pencil-square-o"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container" style="padding: 0px 10px 0px 10px">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <!--<input type="text" id="" class="am-form-field" th:placeholder="#{pleaseInputISBN}">-->
+                                    <label th:text="#{borrowed}" class="am-btn am-btn-default btnAdd">
+                                        <span class="icon-plus"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="margin-top: 5px;">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="#{bookId}">
+                                        </th>
+
+                                        <th th:text="#{bookImage}"></th>
+                                        <th  th:text="#{bookDetail}"></th>
+                                        <th  th:text="#{status}"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tUser">
+                                    <tr th:each="book:${showBorrowList}">
+                                        <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                        <td th:text="${book.id}">
+                                        </td>
+                                        <td><img th:src="@{${book.image}}" style="width: 99px;height: 132px"></td>
+
+                                        <td style="left: 30px">
+                                            <table style="width: 200px;height: 100%;">
+                                                <tr>
+                                                    <th th:text="#{bookName}"></th>
+                                                    <td  th:text="${book.title}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookAuthor}"></th>
+                                                    <td  th:text="${book.author}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookIsbn}"></th>
+                                                    <td  th:text="${book.isbn}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookPrice}"></th>
+                                                    <td  th:text="${book.price}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookCategory}"></th>
+                                                    <td th:text="${book.category}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookLocation}"></th>
+                                                    <td th:text="${book.floor} + '-' + ${book.room} + '-' + ${book.shelf}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td>
+                                            <div class="am-btn-toolbar">
+                                                <div class="am-btn-group am-btn-group-xs">
+                                                    <label th:text="#{borrowed}" class="am-btn am-btn-default am-btn-xs am-text-secondary btnedit">
+                                                        <span class="am-icon-pencil-square-o"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- content end -->
+        </div>
+    </div>
+</div>
+
+
+
+<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation" style="background-color: #2C3E50">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="copyright">
+                    <p>&copy; Copyright - bibliosoft Theme by xidian.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<script>
+    function personal() {
+        window.location = "/readerSucceed";
+    }
+
+    function searchBook() {
+        var keywords = document.getElementById("keywords").value;
+        window.location.replace("/readerToShowBook/keywords="+keywords)
+
+    }
+
+    function reservedBook(bookId) {
+        $ .ajax({
+            url:"/reserve",
+            type:'POST',
+            async : false,
+            data:{
+                _method:"POST",
+                bookId:bookId
+            },
+            dataType:"text",
+            success:function (result) {
+                alert(result);
+            }
+        });
+        window.location.reload(true);
+    }
+</script>
+<script src="/index/js/jquery-1.8.3.min.js">
+</script>
+<script src="/index/js/bootstrap.min.js">
+</script>
+<script type="text/javascript" src="/index/js/hover-dropdown.js">
+</script>
+<script defer src="/index/js/jquery.flexslider.js">
+</script>
+<script type="text/javascript" src="assets/bxslider/jquery.bxslider.js">
+</script>
+
+<script type="text/javascript" src="/index/js/jquery.parallax-1.1.3.js">
+</script>
+<script src="/index/js/wow.min.js">
+</script>
+<script src="assets/owlcarousel/owl.carousel.js">
+</script>
+
+<script src="/index/js/jquery.easing.min.js">
+</script>
+<script src="/index/js/link-hover.js">
+</script>
+<script src="/index/js/superfish.js">
+</script>
+<script type="text/javascript" src="/index/js/parallax-slider/jquery.cslider.js">
+</script>
+<script type="text/javascript">
+    $(function() {
+
+        $('#da-slider').cslider({
+            autoplay    : true,
+            bgincrement : 100
+        });
+
+    });
+</script>
+
+
+
+<!--common script for all pages-->
+<script src="/index/js/common-scripts.js">
+</script>
+
+
+</body>
+</html>

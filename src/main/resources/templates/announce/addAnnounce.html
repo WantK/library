@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="/js/jquery-3.3.1.min.js"></script>
+		<link rel="shortcut icon" href="img/logo.ico"/>
+	</head>
+	<body>
+	<!--<form action="/addAnnounce" method="post" style="padding-top: 20px;" enctype="multipart/form-data">-->
+	<form id="form" style="padding-top: 20px;">
+		<table>
+			<tbody>
+				<tr>
+					<td>Announce Title</td>
+					<td><input id="announceTitle" name="announceTitle" type="text"></td>
+				</tr>
+				<tr>
+					<td>Announce Text</td>
+					<td><textarea id="announceText" rows="8" cols="50" name="announceText"></textarea></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input id="announceImageFile" type="file" name="announceImageFile" style="display: none">
+						<label for="announceImageFile">choose</label>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<input id="submit" value="submit" type="submit" onclick="addAnnounce()" style="display: none">
+					</td>
+
+				</tr>
+			</tbody>
+		</table>
+	</form>
+
+		<!--<table>-->
+			<!--<tbody>-->
+			<!--<tr>-->
+				<!--<td>Announce Title</td>-->
+				<!--<td><input id="announceTitle" name="announceTitle" type="text"></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td>Announce Text</td>-->
+				<!--<td><textarea id="announceText" rows="8" cols="50" name="announceText"></textarea></td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td></td>-->
+				<!--<td>-->
+					<!--<input id="announceImageFile" type="file" name="announceImageFile"/>-->
+				<!--</td>-->
+			<!--</tr>-->
+			<!--<tr>-->
+				<!--<td></td>-->
+				<!--<td>-->
+					<!--<input class="am-btn am-btn-success" th:text="#{submit}" type="submit" onclick="addAnnounce()">-->
+				<!--</td>-->
+
+			<!--</tr>-->
+			<!--</tbody>-->
+		<!--</table>-->
+	</body>
+</html>
+
+<script>
+	function addAnnounce() {
+	    // var announceTitle = document.getElementById("announceTitle").innerText;
+	    // var announceText = document.getElementById("announceText").innerText;
+	    // var announceImageFile = document.getElementById("announceImageFile").files[0];
+        var formFile = new FormData($("#form")[0]);
+        // formFile.append("announceTitle",announceTitle);
+        // formFile.append("announceText",announceText);
+        // formFile.append("announceImageFile", announceImageFile);
+	    $.ajax({
+			url:"/addAnnounce",
+			type:'POST',
+        	data:formFile,
+            async: false,
+            cache: false,//上传文件无需缓存
+            processData: false,//用于对data参数进行序列化处理 这里必须false
+            contentType: false, //必须
+			success:window.parent.location.reload(true)
+		});
+    }
+</script>

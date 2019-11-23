@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>admin</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/public/media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-metro.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="/public/media/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <link href="/public/media/css/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="shortcut icon" href="img/logo.ico"/>
+    <!-- END COPYRIGHT -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="/public/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="/public/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/public/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.uniform.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/public/media/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/app.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/bootstrap-modal.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+    <script src="/public/media/js/ui-modals.js"></script>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<!-- color引用 -->
+<link rel="stylesheet" href="/public/media/css/colpick.css" type="text/css" />
+<link rel="stylesheet" href="/public/static/css/website.css" type="text/css" />
+<link rel="stylesheet" href="/public/swiper/dist/css/swiper.min.css" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN BODY -->
+<style>
+    .setbg input[type="text"],
+    .setcol .yu_bgcol {
+        background-color: initial!important;
+    }
+</style>
+
+<body class="page-header-fixed">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <label class="brand">
+                <span style="font-size: medium; color: white; text-align: center; display: block">Biliosoft</span>
+            </label>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="public/media/image/menu-toggler.png" alt="" />
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav pull-right" style="height: 42px;">
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li>
+                    <a href="?lang=en_US">English(US)</a>
+                </li>
+                <li>
+                    <a href="?lang=zh_CN">简体中文</a>
+                </li>
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown" id="header_notification_bar" style="height: 42px;padding-left: 3px;padding-right: 3px;">
+                    <label class="dropdown-toggle" id="label_dropdown1" style="padding-top: 10px;padding-bottom: 12px;height: 20px;font-size: medium;font-family: &quot;HelveticaNeue&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial;color: white;" th:text="#{helloAdmin}">
+                    </label>
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+                <!--&lt;!&ndash; BEGIN USER LOGIN DROPDOWN &ndash;&gt;-->
+                <!--<li class="dropdown user">-->
+                <!--<button class="dropdown-toggle">退出登录</button>-->
+                <!--</li>-->
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- End HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- Begin SIDEBAR MENU -->
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu">
+            <li>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                <div class="sidebar-toggler hidden-phone"></div>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            </li>
+            <li class="start">
+                <a href="">
+                    <i class=" icon-reorder"></i>
+                    <span class="title" th:text="#{menu}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="register()">
+                    <i class="icon-comments"></i>
+                    <span class="title" th:text="#{registerLibrarian}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="manage()">
+                    <i class="icon-home"></i>
+                    <span class="title" th:text="#{manageLibrarian}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#"onclick="changeAdminPassword()">
+                    <i class="icon-bullhorn"></i>
+                    <span class="title" th:text="#{changeAdminPassword}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="setFine()">
+                    <i class="icon-picture"></i>
+                    <span class="title" th:text="#{setFinePerDay}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="setPeriod()">
+                    <i class="icon-home"></i>
+                    <span class="title" th:text="#{setBookReturnPeriod}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="setDeposit()">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{setReaderDeposit}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="icon-group"></i>
+                    <span class="title" th:text="#{logout}"></span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE -->
+    <div class="page-content" id="content">
+        <input type="text" id="returnPeriod" th:placeholder="${returnPeriod}">
+        <button th:text="#{updata}" onclick="set()"></button>
+        <!--<div class="container-fluid"></div>-->
+        <!-- END PAGE CONTAINER-->
+    </div>
+    <!-- end PAGE -->
+    <!-- **** -->
+    <!-- **** -->
+    <!-- === -->
+    <!--<div id="static" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">-->
+    <!--<div class="modal-header">-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+    <!--<h3 id="titler"></h3>-->
+    <!--</div>-->
+    <!--<div class="modal-body">-->
+    <!--<p id="contenter"></p>-->
+    <!--</div>-->
+    <!--<div class="modal-footer">-->
+    <!--<button type="button" data-dismiss="modal" class="btn">确定</button>-->
+    <!--<button type="button" data-dismiss="modal" class="btn green">关闭会话</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!-- === -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+<!-- <script type="text/javascript" src="/media/js/yy_card.js"></script> -->
+
+<script>
+
+    function logout() {
+        window.location = "/";
+    }
+    function changeAdminPassword() {
+        window.location.replace("/changeAdminPasswordPage");
+    }
+
+    function register() {
+        window.location.replace("/registerLibrarian");
+    }
+
+    function manage() {
+        window.location.replace("/manageLibrarian");
+    }
+
+    function setFine() {
+        window.location.replace("/setFineIndex");
+    }
+
+    function setPeriod() {
+        window.location.replace("/setPeriodIndex")
+    }
+    function setDeposit() {
+        window.location.replace("/setDepositIndex");
+    }
+    function set() {
+        $ .ajax({
+            url:"/setPeriod",
+            type:'POST',
+            async : false,
+            data:{
+                _method:"POST",
+                returnPeriod:document.getElementById("returnPeriod").value
+            },
+            dataType:"text",
+            success:function (result) {
+                alert(result)
+            }
+        });
+        window.location.replace("/setPeriodIndex");
+    }
+
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+
+</html>

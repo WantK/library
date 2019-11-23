@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/library?&useSSL=false
+    username: root
+    password: 359359
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+    prefix: classpath:templates/
+  mail:
+    default-encoding: UTF-8
+    host: smtp.163.com
+    password: zjb0326
+    port: 25
+    protocol: smtp
+    username: Jinbin_z@163.com
+  messages:
+    encoding: UTF-8
+    basename: messages
+server:
+  port: 8080

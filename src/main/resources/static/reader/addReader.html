@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addReader</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<form id="form" style="padding-top: 10px; padding-left: 50px">
+    <table>
+        <tbody>
+        <tr height="35px">
+            <td width="180px">Reader Name</td>
+            <td width="380px"><input id="readerName" name="readerName" type="text"></td>
+        </tr>
+        <tr height="35px">
+            <td>Reader Password</td>
+            <td><input id="readerPassword" name="readerPassword" type="password"></td>
+        </tr>
+        <tr height="35px">
+            <td>Reader Email</td>
+            <td><input id="readerEmail" name="readerEmail" type="text"></td>
+        </tr>
+        <tr height="35px">
+            <td ></td>
+            <td>
+                <img src="/fine.jpg" style="width:100px;height:100px"><br>
+            </td>
+        </tr>
+        <tr height="35px">
+            <td></td>
+            <td>
+                <input id="submit" value="Submit" type="button" onclick="addReader()" style="display: none">
+                <label for="submit" style="color: white;background: #333;border:1px solid #CCC;display:block;width:60px;height:25px;">Submit</label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
+
+<script>
+    function addReader() {
+        var readerName = document.getElementById("readerName").value;
+        if(readerName===""){
+            alert("Please enter the readerName.")
+            return;
+        }
+
+        var readerPassword = document.getElementById("readerPassword").value;
+
+        var readerEmail = document.getElementById("readerEmail").value;
+        var at=readerEmail.indexOf("@");
+        if(at === -1){
+            alert("Wrong E-mail!!!");
+            return;
+        }
+        $ .ajax({
+            url:"/addReader",
+            type:'POST',
+            async : false,
+            data:{
+                _method:"POST",
+                readerName:readerName,
+                readerPassword:readerPassword,
+                readerEmail:readerEmail
+            },
+            dataType:"text",
+            success:function (result) {
+                alert(result);
+            }
+        });
+        window.parent.location.reload(true);
+    }
+</script>

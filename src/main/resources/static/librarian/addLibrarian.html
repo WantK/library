@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addReader</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<form id="form" style="padding-top: 70px; padding-left: 50px">
+    <table>
+        <tbody>
+        <tr height="35px">
+            <td width="220px">Librarian Name</td>
+            <td width="380px"><input id="librarianName" name="librarianName" type="text"></td>
+        </tr>
+        <tr height="35px">
+            <td>Librarian Password</td>
+            <td><input id="librarianPassword" name="librarianPassword" type="password"></td>
+        </tr>
+        <tr height="35px">
+            <td></td>
+            <td>
+                <input id="submit" value="Submit" type="button" onclick="addLibrarian()" style="display: none">
+                <label for="submit" style="color: white;background: #333;border:1px solid #CCC;display:block;width:60px;height:25px;">Submit</label>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</body>
+</html>
+
+<script>
+    function addLibrarian() {
+        var librarianName = document.getElementById("librarianName").value;
+        if(librarianName === ""){
+            alert("Please enter the librarianName.");
+            return;
+        }
+
+        var librarianPassword = document.getElementById("librarianPassword").value;
+        if(librarianPassword === ""){
+            alert("Please enter the password.");
+            return;
+        }
+
+        $.ajax({
+            url: "/addLibrarian",
+            type: 'POST',
+            async: false,
+            data: {
+                _method: "POST",
+                librarianName: librarianName,
+                librarianPassword: librarianPassword
+            },
+            dataType: "text",
+            success: function (result) {
+                alert(result);
+            }
+        });
+        window.parent.location.reload(true);
+    }
+</script>

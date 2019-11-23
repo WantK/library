@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>librarian</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta charset="UTF-8" name="referrer" content="no-referrer">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/public/media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-metro.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="/public/media/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <link href="/public/media/css/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="shortcut icon" href="img/logo.ico"/>
+    <!-- END COPYRIGHT -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="/public/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="/public/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/public/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.uniform.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/public/media/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/app.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/bootstrap-modal.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+    <script src="/public/media/js/ui-modals.js"></script>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<!-- END HEAD -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<!-- color引用 -->
+<link rel="stylesheet" href="/public/media/css/colpick.css" type="text/css" />
+<link rel="stylesheet" href="/public/static/css/website.css" type="text/css" />
+<link rel="stylesheet" href="/public/swiper/dist/css/swiper.min.css" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN BODY -->
+<style>
+    .setbg input[type="text"],
+    .setcol .yu_bgcol {
+        background-color: initial!important;
+    }
+</style>
+
+<body class="page-header-fixed">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <label class="brand">
+                <span style="font-size: medium; color: white; text-align: center; display: block">Biliosoft</span>
+            </label>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="public/media/image/menu-toggler.png" alt="" />
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav pull-right" style="height: 42px;">
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="username" th:text="#{hello} + ',' + ${librarianName}" style="padding-top: 10px;padding-bottom: 12px;height: 20px;font-size: medium;color: white;"></span>
+                        <i class="icon-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/" th:text="#{logout}" style="background: #333; color:white; font-size: medium;"></a></li>
+                    </ul>
+                </li>
+                <!-- END NOTIFICATION DROPDOWN -->
+                <!--&lt;!&ndash; BEGIN USER LOGIN DROPDOWN &ndash;&gt;-->
+                <!--<li class="dropdown user">-->
+                <!--<button class="dropdown-toggle">退出登录</button>-->
+                <!--</li>-->
+                <!-- END USER LOGIN DROPDOWN -->
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- End HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- Begin SIDEBAR MENU -->
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu">
+            <li>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                <div class="sidebar-toggler hidden-phone"></div>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            </li>
+            <li class="start">
+                <a href="">
+                    <i class=" icon-reorder"></i>
+                    <span class="title">菜单</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="registerReader()">
+                    <i class="icon-comments"></i>
+                    <span class="title">注册读者</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="manageReader()">
+                    <i class="icon-home"></i>
+                    <span class="title">管理读者</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="addBook()">
+                    <i class="icon-bullhorn"></i>
+                    <span class="title">添加书籍</span>
+                </a>
+            </li>
+            <!--<li date-id="setfine">-->
+                <!--<a href="#">-->
+                    <!--<i class="icon-picture"></i>-->
+                    <!--<span class="title">搜索书籍</span>-->
+                <!--</a>-->
+            <!--</li>-->
+            <li>
+                <a href="#" onclick="manageBook()">
+                    <i class="icon-home"></i>
+                    <span class="title">管理书籍</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="borrowBook()">
+                    <i class="icon-credit-card"></i>
+                    <span class="title">帮读者借书</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="returnBook()">
+                    <i class="icon-credit-card"></i>
+                    <span class="title">帮读者还书</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="showRecord()">
+                    <i class="icon-credit-card"></i>
+                    <span class="title">查看读者借还和欠款情况</span>
+                </a>
+            </li>
+            <li date-id="setDeposit">
+                <a href="#">
+                    <i class="icon-credit-card"></i>
+                    <span class="title">查看收入</span>
+                </a>
+            </li>
+            <li date-id="setDeposit">
+                <a href="#">
+                    <i class="icon-credit-card"></i>
+                    <span class="title">管理主页公告</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" onclick="logout()">
+                    <i class="icon-group"></i>
+                    <span class="title">退出登录</span>
+                </a>
+            </li>
+        </ul>
+
+        <!-- END SIDEBAR MENU -->
+    </div>
+    <!-- END SIDEBAR -->
+    <!-- BEGIN PAGE -->
+    <div class="page-content" id="content">
+
+        <!--<div class="container-fluid"></div>-->
+        <!-- END PAGE CONTAINER-->
+    </div>
+    <!-- end PAGE -->
+    <!-- **** -->
+    <!-- **** -->
+    <!-- === -->
+    <!--<div id="static" class="modal hide fade" tabindex="-1" data-backdrop="static" data-keyboard="false">-->
+    <!--<div class="modal-header">-->
+    <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>-->
+    <!--<h3 id="titler"></h3>-->
+    <!--</div>-->
+    <!--<div class="modal-body">-->
+    <!--<p id="contenter"></p>-->
+    <!--</div>-->
+    <!--<div class="modal-footer">-->
+    <!--<button type="button" data-dismiss="modal" class="btn">确定</button>-->
+    <!--<button type="button" data-dismiss="modal" class="btn green">关闭会话</button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!-- === -->
+</div>
+<!-- END CONTAINER -->
+<!-- BEGIN FOOTER -->
+<!-- END FOOTER -->
+<!-- <script type="text/javascript" src="/media/js/yy_card.js"></script> -->
+
+<script>
+
+    function logout() {
+        window.location = "/";
+    }
+    function registerReader() {
+        window.location.replace("/registerReader/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    function manageReader() {
+        window.location.replace("/manageReader/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    function addBook() {
+        window.location.replace("/insertBook/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    // function searchBook() {
+    //     window.location.replace("/searchIndex");
+    // }
+
+    function manageBook() {
+        window.location.replace("/searchIndex/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    function borrowBook() {
+        window.location.replace("/borrowIndex/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    function returnBook() {
+        window.location.replace("/returnIndex/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+    function showRecord() {
+        window.location.replace("/recordIndex/" + document.getElementById("librarian").innerText.split(",")[1]);
+    }
+
+
+
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+
+</html>

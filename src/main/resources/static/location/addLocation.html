@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>addLocation</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div style="padding-top: 20px;" align="center">
+    <table >
+        <tbody>
+        <tr height="50px">
+            <td>Location Floor</td>
+            <td><input id="locationFloor" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td>Location Class</td>
+            <td><input id="locationClass" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td>Location Shelf</td>
+            <td><input id="locationShelf" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td colspan="2">
+                <div align="right">
+                    <input type="button" value="Add" onclick="addLocation()" style="color: white;background: #333;border:1px solid #CCC;display:block;width:70px;height:30px;">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script>
+    function addLocation() {
+        var locationFloor = document.getElementById("locationFloor").value;
+        if(!(/(^[1-9]\d*$)/.test(locationFloor))){
+            alert("Please check the locationFloor,it must be a positive number.");
+            return;
+        }
+        var locationClass =document.getElementById("locationClass").value;
+        if(!(/(^[1-9]\d*$)/.test(locationClass))){
+            alert("Please check the locationClass,it must be a positive number.");
+            return;
+        }
+        var locationShelf =document.getElementById("locationShelf").value;
+        if(locationShelf === ""){
+            alert("Please enter the locationShelf.");
+            return;
+        }
+
+        $.ajax({
+            url:"/addLocation",
+            type:'POST',
+            async:false,
+            data:{
+                locationFloor:locationFloor,
+                locationClass:locationClass,
+                locationShelf:locationShelf
+            },
+            dataType:"text",
+            success:function (result) {
+                alert(result);
+            }
+        })
+        window.parent.location.reload(true);
+    }
+</script>

@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- BEGIN HEAD -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>reader</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <meta charset="UTF-8" name="referrer" content="no-referrer">
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="/public/media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-metro.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/style-responsive.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+    <link href="/public/media/css/uniform.default.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <link href="/public/media/css/jquery-ui-1.10.1.custom.min.css" rel="stylesheet" type="text/css" />
+    <link href="/public/media/css/bootstrap-modal.css" rel="stylesheet" type="text/css" />
+    <!-- mask alert -->
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="shortcut icon" href="img/logo.ico"/>
+    <!-- END COPYRIGHT -->
+    <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+    <!-- BEGIN CORE PLUGINS -->
+    <script src="/public/media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+    <!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+    <script src="/public/media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="/public/media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.blockui.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.cookie.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.uniform.min.js" type="text/javascript"></script>
+    <!-- END CORE PLUGINS -->
+    <!-- BEGIN PAGE LEVEL PLUGINS -->
+    <script src="/public/media/js/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="/public/media/js/jquery.backstretch.min.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL PLUGINS -->
+    <!-- BEGIN PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/app.js" type="text/javascript"></script>
+    <!-- END PAGE LEVEL SCRIPTS -->
+    <script src="/public/media/js/bootstrap-modal.js" type="text/javascript"></script>
+    <script src="/public/media/js/bootstrap-modalmanager.js" type="text/javascript"></script>
+    <script src="/public/media/js/ui-modals.js"></script>
+
+    <script src="/js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="/yhf/css/admin.css">
+    <link rel="stylesheet" href="/yhf/css/amazeui.min.css">
+    <link rel="stylesheet" href="/yhf/css/app.css">
+    <script src="/yhf/myplugs/js/plugs.js"></script>
+    <link rel="stylesheet" href="/yhf/css/font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<!-- END HEAD -->
+<!-- BEGIN PAGE LEVEL STYLES -->
+<!-- color引用 -->
+<link rel="stylesheet" href="/public/media/css/colpick.css" type="text/css" />
+<link rel="stylesheet" href="/public/static/css/website.css" type="text/css" />
+<link rel="stylesheet" href="/public/swiper/dist/css/swiper.min.css" type="text/css" />
+<!-- END PAGE LEVEL STYLES -->
+<!-- BEGIN BODY -->
+<style>
+    .setbg input[type="text"],
+    .setcol .yu_bgcol {
+        background-color: initial!important;
+    }
+</style>
+<style>
+
+    .box{
+        width:100%;
+        height:100%;
+        min-height:550px;
+        border:none;
+    } /**box上*/
+    .box-top{
+        margin: 0 auto;
+        width: auto;
+        height:100%;
+        min-height:80px;
+        border: 1px solid #c0c0c0;
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align:center;
+        padding:12px;
+    }/**box中*/
+    .box-center{
+        margin: 0 auto;
+        width: auto;
+        height: 100%;
+        min-height:400px;
+        border: none;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom:5px;
+        text-align:center;
+        padding:12px;	/* white-space:nowrap;*字体不允许换行 */
+    }  /**box上左*/
+    .box-top-left{
+        width:300px;
+        height:100%;
+        min-height:60px;
+        float: left;
+        text-align:center;
+        padding:10px;
+        border: 1px solid #c0c0c0;	/* border-right: 1px solid #c0c0c0; */
+    }/**box上右*/
+    .box-top-right{
+        width:800px;
+        height:100%;
+        min-height:60px;
+        float: left;
+        text-align:center;
+        margin-left:5px;
+        padding:10px;
+        border: 1px solid #c0c0c0;
+    }   /**box上左*/
+    .box-center-left{
+        width:400px;
+        height:100%;
+        min-height:380px;
+        float: left;
+        text-align:center;
+        padding:10px;
+        border: 1px solid #c0c0c0;	/* border-right: 1px solid #c0c0c0; */
+    }/**box上右*/
+    .box-center-right{
+        width:870px;
+        height:100%;
+        min-height:380px;
+        float: left;
+        text-align:center;
+        margin-left:5px;
+        padding:10px;
+        border: 1px solid #c0c0c0;	overflow:scroll;
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             本文来自 lanqibaoer 的CSDN 博客 ，全文地址请点击：https://blog.csdn.net/lanqibaoer/article/details/51019701?utm_source=copy
+</style>
+
+<body class="page-header-fixed">
+<!-- BEGIN HEADER -->
+<div class="header navbar navbar-inverse navbar-fixed-top">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <div class="navbar-inner">
+        <div class="container-fluid">
+            <!-- BEGIN LOGO -->
+            <label class="brand">
+                <span style="font-size: medium; color: white; text-align: center; display: block">Biliosoft</span>
+            </label>
+            <!-- END LOGO -->
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                <img src="public/media/image/menu-toggler.png" alt="" />
+            </a>
+            <!-- END RESPONSIVE MENU TOGGLER -->
+            <!-- BEGIN TOP NAVIGATION MENU -->
+            <ul class="nav pull-right" style="height: 42px;">
+                <li>
+                    <a href="?lang=en_US">English(US)</a>
+                </li>
+                <li>
+                    <a href="?lang=zh_CN">简体中文</a>
+                </li>
+                <!-- BEGIN NOTIFICATION DROPDOWN -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        <span class="username" th:text="#{hello} + ',' + ${librarianName}" style="padding-top: 10px;padding-bottom: 12px;height: 20px;font-size: medium;color: white;"></span>
+                        <i class="icon-angle-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/" th:text="#{logout}" style="background: #333; color:white; font-size: medium;"></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- END TOP NAVIGATION MENU -->
+        </div>
+    </div>
+    <!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- End HEADER -->
+<!-- BEGIN CONTAINER -->
+<div class="page-container row-fluid">
+    <!-- BEGIN SIDEBAR -->
+    <div class="page-sidebar nav-collapse collapse">
+        <!-- Begin SIDEBAR MENU -->
+        <!-- BEGIN SIDEBAR MENU -->
+        <ul class="page-sidebar-menu">
+            <li>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+                <div class="sidebar-toggler hidden-phone"></div>
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+            </li>
+            <li class="start">
+                <a href="">
+                    <i class=" icon-reorder"></i>
+                    <span class="title" th:text="#{menu}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/manageReader">
+                    <i class="icon-home"></i>
+                    <span class="title" th:text="#{manageReader}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/searchIndex">
+                    <i class="icon-home"></i>
+                    <span class="title" th:text="#{manageBook}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/manageLocation">
+                    <i class="icon-comments"></i>
+                    <span class="title" th:text="#{manageLocation}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/manageCategory">
+                    <i class="icon-home"></i>
+                    <span class="title" th:text="#{addCategory}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/borrowIndex">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{helpBorrow}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/returnIndex">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{helpReturn}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/returnFineIndex">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{helpReturnFine}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/recordIndex">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{readerRecord}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/showIncome">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{showIncome}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/deleteHistoryIndex">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{deleteHistory}"></span>
+                </a>
+            </li>
+            <li>
+                <a href="/announcePage">
+                    <i class="icon-credit-card"></i>
+                    <span class="title" th:text="#{manageAnnouce}"></span>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+    <div class="page-content">
+        <div class="am-cf admin-main" style="padding-top: 0px;">
+            <!-- content start -->
+            <div class="admin-content">
+                <div class="admin-content-body" style="height:600px; overflow-y:auto;overflow-x:hidden">
+
+                    <div class="container" style="padding: 0px 10px 0px 10px;margin-left: -10px;">
+
+                        <div class="am-g" style="margin-top: 5px;">
+                            <div class="am-u-sm-12">
+                                <form class="am-form">
+                                    <table class="am-table am-table-striped am-table-hover table-main">
+                                        <tbody>
+                                        <tr>
+                                            <th th:text="${readerName}+ #{fineCurrently}+':'"  style="font-size: 15px; width:280px"></th>
+                                            <td><input type="text" th:value="${fineCurrently}" readonly="true" style="height:32px"></td>
+
+                                            <td><input type="button" th:value="#{returnFine}" onclick="pay()" style="color: white;background: #333;border:1px solid #CCC;display:block;width:60px;height:33px;">
+                                            </td>
+                                            <td>
+                                                <img src="/fine.jpg" style="margin-right:10px; ;width:100px;height:100px">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" style="padding: 0px 10px 0px 10px;margin-left: -10px;">
+                        <div class="am-g">
+                            <div class="am-u-sm-12 am-u-md-6">
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button type="button" th:text="#{borrowingBook}" style="margin-left: 10px; color: white;background: #333;border:1px solid #CCC;display:block;width:100%;height:33px;">
+                                            <span class="icon-plus"></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-input-group am-input-group-sm">
+                                    <span class="am-input-group-btn">
+                                        <label style="margin-left: -15px; color: white;background: #333;border:1px solid #CCC;display:block;width:245px;height:25px;">Return these books first to pay the fine.</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-g" style="margin-top: 5px;">
+                            <div class="am-u-sm-12">
+                                <form class="am-form">
+                                    <table class="am-table am-table-striped am-table-hover table-main">
+                                        <thead>
+                                        <tr>
+                                            <th th:text="#{bookId}">
+                                            </th>
+
+                                            <th th:text="#{bookImage}"></th>
+                                            <th  th:text="#{bookDetail}"></th>
+                                            <th  th:text="#{finePresent}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tUser">
+                                        <tr th:each="book:${borrowFineList}">
+                                            <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                            <td  th:text="${book.id}" id="bookId"></td>
+                                            <td>
+                                                <img th:src="@{${book.image}}" style="width: 150px;height: 200px">
+                                            </td>
+
+                                            <td style="left: 30px">
+                                                <table style="width: 200px;height: 100%;">
+                                                    <tr>
+                                                        <th th:text="#{bookName}"></th>
+                                                        <td  th:text="${book.title}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th th:text="#{bookIsbn}"></th>
+                                                        <td  th:text="${book.isbn}" id="isbn"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th th:text="#{borrowDate}"></th>
+                                                        <td  th:text="${book.date}"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td  th:text="${book.fine}"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container" style="padding: 0px 10px 0px 10px;margin-left: -10px;">
+                        <div class="am-g">
+                            <div class="am-u-sm-12 am-u-md-6">
+                                <div class="am-btn-toolbar">
+                                    <div class="am-btn-group am-btn-group-xs">
+                                        <button type="button" th:text="#{returnedBook}" style="margin-left: 10px; color: white;background: #333;border:1px solid #CCC;display:block;width:100%;height:33px;">
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="am-u-sm-12 am-u-md-3">
+                                <div class="am-input-group am-input-group-sm">
+                                    <!--<span class="am-input-group-btn">-->
+                                    <!--<button class="am-btn am-btn-default" th:text="#{goBack}" onclick="showRecord()"></button>-->
+                                    <!--</span>-->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="am-g" style="margin-top: 5px;">
+                            <div class="am-u-sm-12">
+                                <form class="am-form">
+                                    <table class="am-table am-table-striped am-table-hover table-main">
+                                        <thead>
+                                        <tr>
+                                            <th th:text="#{bookId}">
+                                            </th>
+
+                                            <th th:text="#{bookImage}"></th>
+                                            <th  th:text="#{bookDetail}"></th>
+                                            <th  th:text="#{finePresent}"></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tUser">
+                                        <tr th:each="book:${returnFineList}">
+                                            <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                            <td  th:text="${book.id}" id="bookId"></td>
+                                            <td>
+                                                <img th:src="@{${book.image}}" style="width: 150px;height: 200px">
+                                            </td>
+
+                                            <td style="left: 30px">
+                                                <table style="width: 200px;height: 100%;">
+                                                    <tr>
+                                                        <th th:text="#{bookName}"></th>
+                                                        <td  th:text="${book.title}"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th th:text="#{bookIsbn}"></th>
+                                                        <td  th:text="${book.isbn}" id="isbn"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th th:text="#{borrowDate}"></th>
+                                                        <td  th:text="${book.date}"></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td  th:text="${book.fine}"></td>
+
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- content end -->
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content" id="content" style="display:none">
+        <div class="box-center" style="width: 524px;height: 224px;margin-left: 350px;">
+            <label th:text="${readerName}" id="readerName"></label>
+            <label th:text="#{fineCurrently}"></label>
+            <input th:value="${fineCurrently}" type="text" readonly="true"><br>
+            <img src="/fine.jpg" style="width: 200px;height: 200px"><br>
+            <input type="button" th:value="#{returnFine}" onclick="pay()">
+        </div>
+
+        <div class="admin-content">
+            <div class="admin-content-body">
+
+                <div class="container" style="padding: 0px 10px 0px 10px;margin-left: 100px;">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" th:text="#{borrowingBook}" class="am-btn am-btn-default btnAdd">
+                                        <span class="icon-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                                <span class="am-input-group-btn">
+                                <label class="am-btn am-btn-default">return these books first to pay the fine.</label>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="margin-top: 5px;">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="#{bookId}">
+                                        </th>
+
+                                        <th th:text="#{bookImage}"></th>
+                                        <th  th:text="#{bookDetail}"></th>
+                                        <th  th:text="#{finePresent}"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tUser">
+                                    <tr th:each="book:${borrowFineList}">
+                                        <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                        <td  th:text="${book.id}" id="bookId"></td>
+                                        <td>
+                                            <img th:src="@{${book.image}}" style="width: 150px;height: 200px">
+                                        </td>
+
+                                        <td style="left: 30px">
+                                            <table style="width: 200px;height: 100%;">
+                                                <tr>
+                                                    <th th:text="#{bookName}"></th>
+                                                    <td  th:text="${book.title}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookIsbn}"></th>
+                                                    <td  th:text="${book.isbn}" id="isbn"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{borrowDate}"></th>
+                                                    <td  th:text="${book.date}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td  th:text="${book.fine}"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container" style="padding: 0px 10px 0px 10px;margin-left: 100px;">
+                    <div class="am-g">
+                        <div class="am-u-sm-12 am-u-md-6">
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <button type="button" th:text="#{returnedBook}" class="am-btn am-btn-default btnAdd">
+                                        <span class="icon-plus"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-u-sm-12 am-u-md-3">
+                            <div class="am-input-group am-input-group-sm">
+                                <!--<span class="am-input-group-btn">-->
+                                <!--<button class="am-btn am-btn-default" th:text="#{goBack}" onclick="showRecord()"></button>-->
+                                <!--</span>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-g" style="margin-top: 5px;">
+                        <div class="am-u-sm-12">
+                            <form class="am-form">
+                                <table class="am-table am-table-striped am-table-hover table-main">
+                                    <thead>
+                                    <tr>
+                                        <th th:text="#{bookId}">
+                                        </th>
+
+                                        <th th:text="#{bookImage}"></th>
+                                        <th  th:text="#{bookDetail}"></th>
+                                        <th  th:text="#{finePresent}"></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tUser">
+                                    <tr th:each="book:${returnFineList}">
+                                        <!--<td><input name="chks" value="701" type="checkbox"></td>-->
+                                        <td  th:text="${book.id}" id="bookId"></td>
+                                        <td>
+                                            <img th:src="@{${book.image}}" style="width: 150px;height: 200px">
+                                        </td>
+
+                                        <td style="left: 30px">
+                                            <table style="width: 200px;height: 100%;">
+                                                <tr>
+                                                    <th th:text="#{bookName}"></th>
+                                                    <td  th:text="${book.title}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{bookIsbn}"></th>
+                                                    <td  th:text="${book.isbn}" id="isbn"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th th:text="#{borrowDate}"></th>
+                                                    <td  th:text="${book.date}"></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                        <td  th:text="${book.fine}"></td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--<div>-->
+        <!--<table id="borrowList">-->
+        <!--<div style="color: red" align="left">-->
+        <!--<label th:text="#{borrowingBook}"></label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+        <!--<tbody>-->
+        <!--<tr th:each="book:${borrowFineList}">-->
+        <!--<td  th:text="#{bookId} + ':'+ ${book.bookId}"></td>-->
+        <!--<td>-->
+        <!--<img th:src="@{${book.image}}" style="width: 200px;height: 200px">-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<table style="width: 400px;height: 100%">-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td  th:text="${book.id}"></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--<tr>-->
+        <!--<th th:text="#{bookName}"></th>-->
+        <!--<td  th:text="${book.title}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th th:text="#{bookIsbn}"></th>-->
+        <!--<td  th:text="${book.isbn}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th th:text="#{finePresent}"></th>-->
+        <!--<td  th:text="${book.fine}"></td>-->
+        <!--</tr>-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td  th:text="${book.count}"></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</div>-->
+
+        <!--</table>-->
+        <!--<table id="returnList">-->
+        <!--<div style="color: red" align="left">-->
+        <!--<label th:text="#{returnedBook}"></label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+        <!--<tbody>-->
+        <!--<tr th:each="book:${returnFineList}">-->
+        <!--<td  th:text="#{bookId} + ':' + ${book.bookId}"></td>-->
+        <!--<td>-->
+        <!--<img th:src="@{${book.image}}" style="width: 150px;height: 200px">-->
+        <!--</td>-->
+        <!--<td>-->
+        <!--<table style="width: 400px;height: 100%">-->
+        <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+        <!--&lt;!&ndash;<td  th:text="${book.id}"></td>&ndash;&gt;-->
+        <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+        <!--<tr>-->
+        <!--<th th:text="#{bookName}"></th>-->
+        <!--<td  th:text="${book.title}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th th:text="#{bookIsbn}"></th>-->
+        <!--<td  th:text="${book.isbn}"></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th th:text="#{finePresent}"></th>-->
+        <!--<td  th:text="${book.fine}"></td>-->
+        <!--</tr>-->
+        <!--</table>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</div>-->
+
+        <!--</table>-->
+        <!--</div>-->
+        <!--<div class="container-fluid"></div>-->
+        <!-- END PAGE CONTAINER-->
+    </div>
+
+</div>
+<script>
+
+function pay() {
+    var readerName = document.getElementById("readerName").innerText;
+    $ .ajax({
+        url:"/pay",
+        type:'POST',
+        async : false,
+        data:{
+            _method:"POST",
+            readerName:readerName
+        },
+        dataType:"text",
+        success:function (result) {
+            alert(result);
+        }
+    });
+    window.location.replace("/returnFineIndex");
+}
+
+</script>
+<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+
+</html>

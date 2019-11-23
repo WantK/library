@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>editLocation</title>
+    <script src="/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div style="padding-top: 20px;" align="center">
+    <table >
+        <tbody>
+        <tr height="50px">
+            <td>Location Floor</td>
+            <td><input id="locationFloor" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td>Location Class</td>
+            <td><input id="locationClass" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td>Location Shelf</td>
+            <td><input id="locationShelf" type="text"></td>
+        </tr>
+        <tr height="50px">
+            <td colspan="2">
+                <div align="right">
+                    <input type="button" value="Updata" onclick="editLocation()" style="color: white;background: #333;border:1px solid #CCC;display:block;width:70px;height:30px;">
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+<script>
+    function editLocation(locationId) {
+        $.ajax({
+            url:"/editLocation",
+            type:'POST',
+            async:false,
+            data:{
+                _method:'PUT',
+                locationId:locationId,
+                locationFloor:document.getElementById("locationFloor").value,
+                locationClass:document.getElementById("locationClass").value,
+                locationShelf:document.getElementById("locationShelf").value
+            },
+            success:window.parent.location.reload(true)
+
+        })
+    }
+</script>
